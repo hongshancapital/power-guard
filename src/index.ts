@@ -2,6 +2,7 @@ import boolean from './boolean';
 import enumGuard from './enum';
 import throwError from './error';
 import { isObject } from './types';
+import number from './number';
 
 type DataConfig = {
   [key: string]: GuardFunction<unknown>;
@@ -35,4 +36,8 @@ enum Foo {
   Baz = 'Baz',
 }
 
-export const tt = guard({ foo: boolean.required, bar: enumGuard(Foo).optional })({});
+export const tt = guard({
+  foo: boolean.required,
+  bar: enumGuard(Foo).optional,
+  baz: number.optional.array,
+})({});

@@ -1,12 +1,25 @@
 import guard from './guard';
+import guardArray from '../array';
 
 class BooleanGuard implements GuardClass<boolean> {
   get required() {
-    return (x: unknown) => guard(x);
+    const test: GuardFunctionWithArray<boolean> = function (x: unknown) {
+      return guard(x);
+    };
+
+    test.array = guardArray((x) => guard(x));
+
+    return test;
   }
 
   get optional() {
-    return (x: unknown) => guard(x, true);
+    const test: OptionalGuardFunctionWithArray<boolean> = function (x: unknown) {
+      return guard(x, true);
+    };
+
+    test.array = guardArray((x) => guard(x), true);
+
+    return test;
   }
 }
 

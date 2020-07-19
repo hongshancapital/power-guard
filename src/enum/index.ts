@@ -1,6 +1,9 @@
 import guard from './guard';
+import guardArray from '../array';
 
-class EnumGuard<T> implements GuardClass<T[keyof T]> {
+type EnumType<T> = T[keyof T];
+
+class EnumGuard<T> implements GuardClass<EnumType<T>> {
   static create<T>(enumObject: T) {
     return new EnumGuard(enumObject);
   }
@@ -8,11 +11,25 @@ class EnumGuard<T> implements GuardClass<T[keyof T]> {
   private enumObject: T;
 
   get required() {
-    return (x: unknown) => guard(this.enumObject, x);
+    const { enumObject } = this;
+    const test: GuardFunctionWithArray<EnumType<T>> = function (x: unknown) {
+      return guard(enumObject, x);
+    };
+
+    test.array = guardArray((x) => guard(this.enumObject, x));
+
+    return test;
   }
 
   get optional() {
-    return (x: unknown) => guard(this.enumObject, x, true);
+    const { enumObject } = this;
+    const test: OptionalGuardFunctionWithArray<EnumType<T>> = function (x: unknown) {
+      return guard(enumObject, x, true);
+    };
+
+    test.array = guardArray((x) => guard(enumObject, x), true);
+
+    return test;
   }
 
   constructor(enumObject: T) {

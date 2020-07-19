@@ -1,14 +1,29 @@
 import guard from './guard';
+import guardArray from '../array';
 
 class StringGuard implements GuardClass<string> {
   private maxLength?: number;
 
   get required() {
-    return (x: unknown) => guard(x, this.maxLength);
+    const { maxLength } = this;
+    const test: GuardFunctionWithArray<string> = function (x: unknown) {
+      return guard(x, maxLength);
+    };
+
+    test.array = guardArray((x) => guard(x, maxLength));
+
+    return test;
   }
 
   get optional() {
-    return (x: unknown) => guard(x, true, this.maxLength);
+    const { maxLength } = this;
+    const test: OptionalGuardFunctionWithArray<string> = function (x: unknown) {
+      return guard(x, true, maxLength);
+    };
+
+    test.array = guardArray((x) => guard(x, maxLength), true);
+
+    return test;
   }
 
   with(maxLength: number): StringGuard {

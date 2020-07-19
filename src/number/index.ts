@@ -1,15 +1,30 @@
 import guard, { NumberRange } from './guard';
 import { isArray, isNumber } from '../types';
+import guardArray from '../array';
 
 class NumberGuard implements GuardClass<number> {
   private range?: NumberRange;
 
   get required() {
-    return (x: unknown) => guard(x, this.range);
+    const { range } = this;
+    const test: GuardFunctionWithArray<number> = function (x: unknown) {
+      return guard(x, range);
+    };
+
+    test.array = guardArray((x) => guard(x, range));
+
+    return test;
   }
 
   get optional() {
-    return (x: unknown) => guard(x, true, this.range);
+    const { range } = this;
+    const test: OptionalGuardFunctionWithArray<number> = function (x: unknown) {
+      return guard(x, true, range);
+    };
+
+    test.array = guardArray((x) => guard(x, range), true);
+
+    return test;
   }
 
   with(range: number[]): NumberGuard;
