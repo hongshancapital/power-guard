@@ -5,27 +5,32 @@ import { GuardClass, GuardFunctionWithArray, OptionalGuardFunctionWithArray } fr
 
 class NumberGuard implements GuardClass<number> {
   private range?: NumberRange;
+  private allowString: boolean;
 
   get required() {
-    const { range } = this;
+    const { range, allowString } = this;
     const test: GuardFunctionWithArray<number> = function (x: unknown) {
-      return guard(x, range);
+      return guard(x, range, allowString);
     };
 
-    test.array = guardArray((x) => guard(x, range));
+    test.array = guardArray((x) => guard(x, range, allowString));
 
     return test;
   }
 
   get optional() {
-    const { range } = this;
+    const { range, allowString } = this;
     const test: OptionalGuardFunctionWithArray<number> = function (x: unknown) {
-      return guard(x, true, range);
+      return guard(x, true, range, allowString);
     };
 
-    test.array = guardArray((x) => guard(x, range), true);
+    test.array = guardArray((x) => guard(x, range, allowString), true);
 
     return test;
+  }
+
+  get strict() {
+    return new NumberGuard(this.range, false);
   }
 
   with(range: number[]): NumberGuard;
@@ -55,8 +60,9 @@ class NumberGuard implements GuardClass<number> {
     return new NumberGuard({ ...this.range, lower: value, equalsLower: true });
   }
 
-  constructor(range?: NumberRange) {
+  constructor(range?: NumberRange, allowString = true) {
     this.range = range;
+    this.allowString = allowString;
   }
 }
 
