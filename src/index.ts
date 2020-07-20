@@ -1,8 +1,6 @@
-import boolean from './boolean';
-import enumGuard from './enum';
 import throwError from './error';
 import { isObject } from './types';
-import number from './number';
+import { GuardFunction } from './global';
 
 type DataConfig = {
   [key: string]: GuardFunction<unknown>;
@@ -31,13 +29,18 @@ export const guard = <T extends DataConfig>(config: T): GuardFunction<GuardedDat
   return guarded;
 };
 
-enum Foo {
-  Bar = 'Bar',
-  Baz = 'Baz',
-}
+export default guard;
 
-export const tt = guard({
-  foo: boolean.required,
-  bar: enumGuard(Foo).optional,
-  baz: number.optional.array,
-})({});
+export * from './global';
+
+export { default as throwError } from './error';
+
+export { default as array } from './array';
+
+export { default as boolean } from './boolean';
+
+export { default as enumGuard } from './enum';
+
+export { default as number } from './number';
+
+export { default as string } from './string';

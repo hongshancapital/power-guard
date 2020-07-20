@@ -1,5 +1,6 @@
 import throwError from '../error';
 import { isNumber, isBoolean } from '../types';
+import { Optional } from '../global';
 
 type Range = {
   lower: number;

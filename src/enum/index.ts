@@ -1,5 +1,6 @@
 import guard from './guard';
 import guardArray from '../array';
+import { GuardClass, GuardFunctionWithArray, OptionalGuardFunctionWithArray } from '../global';
 
 type EnumType<T> = T[keyof T];
 

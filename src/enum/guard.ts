@@ -1,5 +1,6 @@
 import throwError from '../error';
 import { isEnum } from '../types';
+import { Optional } from '../global';
 
 function guard<T>(enumObject: T, x: unknown): T[keyof T];
 function guard<T>(enumObject: T, x: unknown, optional: true): Optional<T[keyof T]>;

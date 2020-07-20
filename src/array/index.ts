@@ -1,4 +1,5 @@
 import throwError from '../error';
+import { GuardFunction, Optional } from '../global';
 
 function guardArray<T>(elemGuard: GuardFunction<T>): (x: unknown) => Array<T>;
 function guardArray<T>(

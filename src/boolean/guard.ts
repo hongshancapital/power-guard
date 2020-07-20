@@ -1,5 +1,6 @@
 import throwError from '../error';
 import { isBoolean } from '../types';
+import { Optional } from '../global';
 
 function guard(x: unknown): boolean;
 function guard(x: unknown, optional: true): Optional<boolean>;

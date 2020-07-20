@@ -2,9 +2,16 @@
   "name": "power-guard",
   "version": "1.0.0",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "repository": "https://github.com/gao-sun/power-guard",
   "author": "Gao Sun",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.6.1",
     "@typescript-eslint/parser": "^3.6.1",

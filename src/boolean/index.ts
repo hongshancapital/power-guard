@@ -1,5 +1,6 @@
 import guard from './guard';
 import guardArray from '../array';
+import { GuardClass, GuardFunctionWithArray, OptionalGuardFunctionWithArray } from '../global';
 
 class BooleanGuard implements GuardClass<boolean> {
   get required() {

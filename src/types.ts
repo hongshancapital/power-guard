@@ -1,3 +1,5 @@
+import { Guard } from './global';
+
 // https://stackoverflow.com/questions/59480160/typescript-check-object-by-type-or-interface-at-runtime-with-typeguards-in-2020
 const primitiveGuard = <T>(typeOf: string) => (x: unknown): x is T => typeof x === typeOf;
 

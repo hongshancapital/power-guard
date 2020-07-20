@@ -1,5 +1,6 @@
 import throwError from '../error';
 import { isString, isBoolean } from '../types';
+import { Optional } from '../global';
 
 function guard(x: unknown, maxLength?: number): string;
 function guard(x: unknown, optional: true, maxLength?: number): Optional<string>;
