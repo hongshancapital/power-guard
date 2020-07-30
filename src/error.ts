@@ -1,3 +1,3 @@
-export default function throwError(type: string): never {
-  throw Error(`Error guarding ${type}`);
+export default function throwError(message: string): never {
+  throw Error(message);
 }
