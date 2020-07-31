@@ -1,6 +1,6 @@
-import throwError from '../error';
 import { isNumber, isBoolean, isString } from '../types';
 import { Optional } from '../global';
+import PowerGuardError from '../error';
 
 type Range = {
   lower: number;
@@ -24,6 +24,7 @@ function guard(
   rangeOrAllowString?: NumberRange | boolean,
   allowString = false,
 ): Optional<number> {
+  const optional = isBoolean(optionalOrRange) && optionalOrRange;
   const parsed =
     (isNumber(x) && x) ||
     (((isBoolean(rangeOrAllowString) && rangeOrAllowString) || allowString) &&
@@ -41,22 +42,32 @@ function guard(
 
       if (lower) {
         if ((equalsLower && parsed < lower) || (!equalsLower && parsed <= lower)) {
-          throwError(`Value should be greater than${equalsLower ? ' or equals to ' : ' '}${lower}`);
+          throw new PowerGuardError(
+            'number',
+            x,
+            optional,
+            `Value should be greater than${equalsLower ? ' or equals to ' : ' '}${lower}`,
+          );
         }
       }
 
       if (upper) {
         if ((equalsUpper && parsed > upper) || (!equalsUpper && parsed >= upper)) {
-          throwError(`Value should be less than${equalsUpper ? ' or equals to ' : ' '}${upper}`);
+          throw new PowerGuardError(
+            'number',
+            x,
+            optional,
+            `Value should be less than${equalsUpper ? ' or equals to ' : ' '}${upper}`,
+          );
         }
       }
     }
     return parsed;
   }
-  if (isBoolean(optionalOrRange) && optionalOrRange && x === undefined) {
+  if (optional && x === undefined) {
     return x;
   }
-  return throwError('Error guarding number');
+  throw new PowerGuardError('number', x, optional);
 }
 
 export default guard;

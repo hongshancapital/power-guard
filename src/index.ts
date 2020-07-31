@@ -1,6 +1,6 @@
-import throwError from './error';
 import { isObject } from './types';
 import { GuardFunction } from './global';
+import PowerGuardError from './error';
 
 type DataConfig = {
   [key: string]: GuardFunction<unknown>;
@@ -14,7 +14,7 @@ export const guard = <T extends DataConfig>(config: T): GuardFunction<GuardedDat
   data: unknown,
 ) => {
   if (!isObject(data)) {
-    return throwError('Expecting object data');
+    throw new PowerGuardError('object', data, false);
   }
 
   const guarded = {} as GuardedData<T>;

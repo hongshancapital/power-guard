@@ -1,5 +1,5 @@
-import throwError from '../error';
 import { GuardFunction, Optional } from '../global';
+import PowerGuardError from '../error';
 
 function guardArray<T>(elemGuard: GuardFunction<T>): (x: unknown) => Array<T>;
 function guardArray<T>(
@@ -16,7 +16,7 @@ function guardArray<T>(
     }
 
     if (!Array.isArray(x)) {
-      return throwError('Value is not array');
+      throw new PowerGuardError('array', x, optional);
     }
 
     return x.map((el) => elemGuard(el));
