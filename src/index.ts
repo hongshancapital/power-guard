@@ -33,7 +33,7 @@ export default guard;
 
 export * from './global';
 
-export { default as throwError } from './error';
+export { default as PowerGuardError } from './error';
 
 export { default as array } from './array';
 
