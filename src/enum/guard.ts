@@ -8,8 +8,8 @@ function guard<T>(enumObject: T, x: unknown, optional = false): Optional<T[keyof
   if (isEnum(enumObject)(x)) {
     return x;
   }
-  if (optional) {
-    return undefined;
+  if (optional && x === undefined) {
+    return x;
   }
   return throwError('Error guarding enum');
 }

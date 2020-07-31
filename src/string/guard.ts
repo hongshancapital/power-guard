@@ -18,8 +18,8 @@ function guard(
 
     return x;
   }
-  if (isBoolean(optionalOrMaxlength) && optionalOrMaxlength) {
-    return undefined;
+  if (isBoolean(optionalOrMaxlength) && optionalOrMaxlength && x === undefined) {
+    return x;
   }
   return throwError('Error guarding boolean');
 }

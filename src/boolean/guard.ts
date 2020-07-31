@@ -30,8 +30,8 @@ function guard(
     }
   }
 
-  if (isBoolean(optionalOrMode) && optionalOrMode) {
-    return undefined;
+  if (isBoolean(optionalOrMode) && optionalOrMode && x === undefined) {
+    return x;
   }
   return throwError('Error guarding boolean');
 }

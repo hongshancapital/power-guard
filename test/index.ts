@@ -28,7 +28,7 @@ const { str1, str2, str3, str4 } = stringGuard({
 });
 const guarded = booleanGuard({
   bool1: false,
-  bool2: 'false',
+  bool2: 'false1',
   bool3: 1,
   bool4: ['true', false, true, 1, '0'],
 });

@@ -53,8 +53,8 @@ function guard(
     }
     return parsed;
   }
-  if (isBoolean(optionalOrRange) && optionalOrRange) {
-    return undefined;
+  if (isBoolean(optionalOrRange) && optionalOrRange && x === undefined) {
+    return x;
   }
   return throwError('Error guarding number');
 }
