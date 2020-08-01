@@ -2,7 +2,7 @@ import { number, PowerGuardError } from '../src';
 import { expect } from 'chai';
 
 describe('Number guard', () => {
-  it('should return original number when needed', () => {
+  it('should return proper number when needed', () => {
     expect(number.required(10)).equals(10);
     expect(number.strict.optional(10)).equals(10);
     expect(number.optional(undefined)).equals(undefined);
@@ -40,7 +40,7 @@ describe('Number guard', () => {
     expect(() => number.with({ lower: 10, upper: 12 }).required(10)).throws(PowerGuardError);
   });
 
-  it('should return original number array when needed', () => {
+  it('should return proper number array when needed', () => {
     expect(number.required.array([10, '11', '12'])).deep.equals([10, 11, 12]);
     expect(number.strict.optional.array([10, 11, 12])).deep.equals([10, 11, 12]);
     expect(number.optional.array(undefined)).deep.equals(undefined);
