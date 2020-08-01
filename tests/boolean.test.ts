@@ -1,4 +1,5 @@
 import { boolean, PowerGuardError } from '../src';
+import guard from '../src/boolean/guard';
 import { expect } from 'chai';
 
 describe('Boolean guard', () => {
@@ -12,6 +13,7 @@ describe('Boolean guard', () => {
     expect(boolean.loose.required('1')).equals(true);
     expect(boolean.loose.required(0)).equals(false);
     expect(boolean.loose.required('-1')).equals(true);
+    expect(guard('true')).equals(true);
   });
 
   it('should throw error when needed', () => {
