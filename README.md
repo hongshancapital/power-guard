@@ -1,6 +1,6 @@
 # Power Guard
 
-The 0 dependency recipe for type strong validations: from `unknown` to anything you want.
+The 0 dependency recipe for type strong validations: from `unknown` to anything you want. [中文](README-cn.md)
 
 ![CI](https://github.com/gao-sun/power-guard/workflows/CI/badge.svg) ![version](https://badgen.net/npm/v/power-guard) ![size](https://badgen.net/bundlephobia/minzip/power-guard)
 
@@ -52,11 +52,11 @@ import { number, string, boolean } from 'power-guard';
 number.required(10); // 10
 number.strict.required('10'); // error: string is not allowed in strict mode
 number.gt(10).required('10'); // error: value should be greater than 10
-string.with(10).required('a really long string') // error: string has max length 10
-string.optional(undefined) // undefined
-boolean.required.array([true, false]) // [true, false]
-boolean.required.array(true) // error: value should be an array
-boolean.loose.required('1') // true
+string.with(10).required('a really long string'); // error: string has max length 10
+string.optional(undefined); // undefined
+boolean.required.array([true, false]); // [true, false]
+boolean.required.array(true); // error: value should be an array
+boolean.loose.required('1'); // true
 ```
 
 ### Object Validation
@@ -154,7 +154,7 @@ Each of the guards below should follow with a `.required` or `.optional`, while 
 #### boolean
 
 | Boolean Guard  | Description                                                                                                                                                                     |
-|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | boolean        | A boolean value must be presented. 'true' and 'false' are acceptable.                                                                                                           |
 | boolean.strict | A boolean value must be presented. No implicit conversions allowed.                                                                                                             |
 | boolean.loose  | A boolean value must be presented. 'true' and 'false' are acceptable. If the value can be converted to a number, then return `false` iff the number equals 0, otherwise `true`. |
@@ -162,13 +162,13 @@ Each of the guards below should follow with a `.required` or `.optional`, while 
 #### enum
 
 | Enum Guard          | Description                            |
-|---------------------|----------------------------------------|
+| ------------------- | -------------------------------------- |
 | enumGuard(EnumType) | A value of EnumType must be presented. |
 
 #### number
 
 | Number Guard                    | Description                                                               |
-|---------------------------------|---------------------------------------------------------------------------|
+| ------------------------------- | ------------------------------------------------------------------------- |
 | number                          | A number value must be presented. Valid number string is also acceptable. |
 | number.strict                   | A number value must be presented. No implicit conversions allowed.        |
 | number.with([lower, upper])     | A number value within [lower, upper] must be presented.                   |
@@ -192,7 +192,7 @@ Note you can chain these restrictions like: `number.gt(10).lte(20).strict.requir
 #### string
 
 | String Guard   | Description                                                                                                                            |
-|----------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | string         | A string value must be presented.                                                                                                      |
 | string.escaped | A string value must be presented. Punctuations and unknown chars will be removed and fullwidth chars will be converted into halfwidth. |
 | string.with(x) | A string value with a max length of x must be presented.                                                                               |
@@ -210,4 +210,4 @@ function array(elemGuard: (x: unknown) => T, optional: true): (x: unknown) => Ar
 
 #### Traditional Type Guards
 
-`power-guard` will return a variable with the type you want instead of asserting types like traditional type guards. Browse [types.ts](https://github.com/gao-sun/power-guard/blob/master/src/types.ts) if you would like to infer types. 
+`power-guard` will return a variable with the type you want instead of asserting types like traditional type guards. Browse [types.ts](src/types.ts) if you would like to infer types.
