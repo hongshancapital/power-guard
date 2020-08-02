@@ -44,15 +44,11 @@ npm i power-guard
 
 ### Play with Your Favorite Framework
 
-`Express.js`
-
 ```ts
+// Express.js
 const { id, name } = guard({ id: number.required, name: string.required })(req.body);
-```
 
-`Koa`
-
-```ts
+// Koa
 const { id, name } = guard({ id: number.required, name: string.required })(ctx.request.body);
 ```
 

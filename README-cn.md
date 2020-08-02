@@ -44,15 +44,11 @@ npm i power-guard
 
 ### 与你最喜爱的框架进行集成
 
-`Express.js`
-
 ```ts
+// Express.js
 const { id, name } = guard({ id: number.required, name: string.required })(req.body);
-```
 
-`Koa`
-
-```ts
+// Koa
 const { id, name } = guard({ id: number.required, name: string.required })(ctx.request.body);
 ```
 
