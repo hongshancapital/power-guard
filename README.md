@@ -153,11 +153,11 @@ Each of the guards below should follow with a `.required` or `.optional`, while 
 
 #### boolean
 
-| Boolean Guard  | Description                                                                                                                                                                     |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| boolean        | A boolean value must be presented. 'true' and 'false' are acceptable.                                                                                                           |
-| boolean.strict | A boolean value must be presented. No implicit conversions allowed.                                                                                                             |
-| boolean.loose  | A boolean value must be presented. 'true' and 'false' are acceptable. If the value can be converted to a number, then return `false` iff the number equals 0, otherwise `true`. |
+| Boolean Guard  | Description                                                                                                                                                                         |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| boolean        | A boolean value must be presented. `'true'` and `'false'` are acceptable.                                                                                                           |
+| boolean.strict | A boolean value must be presented. No implicit conversions allowed.                                                                                                                 |
+| boolean.loose  | A boolean value must be presented. `'true'` and `'false'` are acceptable. If the value can be converted to a number, then return `false` iff the number equals 0, otherwise `true`. |
 
 #### enum
 
