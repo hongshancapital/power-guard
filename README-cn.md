@@ -177,7 +177,7 @@ const { foo } = guardObject(x); // 如果验证成功 foo 的类型将会是 `So
 
 #### number
 
-| Number 守卫                     | Description                                 |
+| Number 守卫                     | 描述                                        |
 | ------------------------------- | ------------------------------------------- |
 | number                          | number 必须出现。有效的字符串数字也能接受   |
 | number.strict                   | number 必须出现。不允许隐式转换。           |
