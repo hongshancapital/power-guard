@@ -11,6 +11,7 @@
   "license": "MIT",
   "scripts": {
     "build": "rm -rf lib/ && tsc",
+    "lint": "eslint --ext .tsx --ext .ts src/ tests/",
     "test": "nyc --reporter=html mocha -r ts-node/register tests/**/*.test.ts"
   },
   "devDependencies": {
