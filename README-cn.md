@@ -42,6 +42,20 @@ yarn add power-guard
 npm i power-guard
 ```
 
+### 与你最喜爱的框架进行集成
+
+`Express.js`:
+
+```ts
+const { id, name } = guard({ id: number.required, name: string.required })(req.body);
+```
+
+`Koa`:
+
+```ts
+const { id, name } = guard({ id: number.required, name: string.required })(ctx.request.body);
+```
+
 ## 示例
 
 ### 原始类型验证

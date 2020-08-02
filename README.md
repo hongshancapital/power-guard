@@ -42,6 +42,20 @@ yarn add power-guard
 npm i power-guard
 ```
 
+### Play with Your Favorite Framework
+
+`Express.js`:
+
+```ts
+const { id, name } = guard({ id: number.required, name: string.required })(req.body);
+```
+
+`Koa`:
+
+```ts
+const { id, name } = guard({ id: number.required, name: string.required })(ctx.request.body);
+```
+
 ## Examples
 
 ### Primitive Validation
