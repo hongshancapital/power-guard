@@ -9,6 +9,7 @@ describe('String guard', () => {
     expect(string.escaped.optional('！ａｂｃ　ＡＢＣ！')).equals('abc ABC');
     expect(string.escaped.optional('Image.PNG')).equals('ImagePNG');
     expect(string.required('！ａｂｃ　ＡＢＣ！')).equals('！ａｂｃ　ＡＢＣ！');
+    expect(string.notEmpty('abc ')).equals('abc ');
   });
 
   it('should throw error when needed', () => {
@@ -18,6 +19,9 @@ describe('String guard', () => {
     expect(() => string.escaped.optional(true)).throws(PowerGuardError);
     expect(() => string.escaped.optional({})).throws(PowerGuardError);
     expect(() => string.escaped.required(undefined)).throws(PowerGuardError);
+    expect(() => string.escaped.notEmpty('   ')).throws(PowerGuardError);
+    expect(() => string.escaped.notEmpty('  ! ')).throws(PowerGuardError);
+    expect(() => string.escaped.notEmpty('')).throws(PowerGuardError);
   });
 
   it('should return proper string array when needed', () => {
@@ -36,6 +40,7 @@ describe('String guard', () => {
       '?ABC.abc',
       'Image.PNG',
     ]);
+    expect(string.notEmpty.array([' foo', 'bar ', 'baz'])).deep.equals([' foo', 'bar ', 'baz']);
   });
 
   it('should throw error for input array when needed', () => {
@@ -47,5 +52,6 @@ describe('String guard', () => {
     expect(() => string.escaped.optional.array([true])).throws(PowerGuardError);
     expect(() => string.escaped.optional.array([{}])).throws(PowerGuardError);
     expect(() => string.escaped.required.array(undefined)).throws(PowerGuardError);
+    expect(() => string.escaped.notEmpty.array([' foo', 'bar ', '！'])).throws(PowerGuardError);
   });
 });

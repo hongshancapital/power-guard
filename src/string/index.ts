@@ -6,6 +6,7 @@ import {
   OptionalGuardFunctionWithArray,
   Optional,
 } from '../global';
+import { PowerGuardError } from '..';
 
 const punctuation = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
 const unknownChar = '\uFFFD';
@@ -25,6 +26,27 @@ class StringGuard implements GuardClass<string> {
       .replace(/[\uff01-\uff5e]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0xfee0))
       .replace(/\u3000/g, '\u0020')
       .replace(new RegExp(`[${punctuation}${unknownChar}]`, 'g'), '');
+  }
+
+  get notEmpty() {
+    const { maxLength, escapeIfNeeded } = this;
+    const escape = escapeIfNeeded.bind(this);
+    const finalGuard = (x: unknown) => {
+      const result = escape(guard(x, maxLength));
+
+      if (!result.trim()) {
+        throw new PowerGuardError('string', x, false, 'Value should not be empty');
+      }
+
+      return result;
+    };
+    const test: GuardFunctionWithArray<string> = function (x: unknown) {
+      return finalGuard(x);
+    };
+
+    test.array = guardArray((x) => finalGuard(x));
+
+    return test;
   }
 
   get required() {
