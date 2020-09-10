@@ -2,11 +2,11 @@ import { isObject } from './types';
 import { GuardFunction } from './global';
 import PowerGuardError from './error';
 
-type DataConfig = {
+export type DataConfig = {
   [key: string]: GuardFunction<unknown>;
 };
 
-type GuardedData<T extends DataConfig> = {
+export type GuardedData<T extends DataConfig> = {
   [key in keyof T]: ReturnType<T[key]>;
 };
 
