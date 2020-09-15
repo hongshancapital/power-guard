@@ -40,7 +40,7 @@ function guard(
     if (finalRange) {
       const { lower, equalsLower, upper, equalsUpper } = finalRange;
 
-      if (lower) {
+      if (lower !== undefined) {
         if ((equalsLower && parsed < lower) || (!equalsLower && parsed <= lower)) {
           throw new PowerGuardError(
             'number',
@@ -51,7 +51,7 @@ function guard(
         }
       }
 
-      if (upper) {
+      if (upper !== undefined) {
         if ((equalsUpper && parsed > upper) || (!equalsUpper && parsed >= upper)) {
           throw new PowerGuardError(
             'number',
