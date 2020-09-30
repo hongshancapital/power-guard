@@ -25,12 +25,12 @@ function guard(
   allowString = false,
 ): Optional<number> {
   const optional = isBoolean(optionalOrRange) && optionalOrRange;
-  const parsed =
-    (isNumber(x) && x) ||
-    (((isBoolean(rangeOrAllowString) && rangeOrAllowString) || allowString) &&
+  const parsed = isNumber(x)
+    ? x
+    : ((isBoolean(rangeOrAllowString) && rangeOrAllowString) || allowString) &&
       isString(x) &&
       !isNaN(Number(x)) &&
-      Number(x));
+      Number(x);
 
   if (parsed !== false) {
     const finalRange =

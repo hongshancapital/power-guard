@@ -12,6 +12,8 @@ describe('Number guard', () => {
     expect(number.lt(11).required(10)).equals(10);
     expect(number.gte(10).lte(11).required(10)).equals(10);
     expect(number.gte(10).lte(11).required('10')).equals(10);
+    expect(number.gte(0).required(0)).equals(0);
+    expect(number.lte(0).required('0')).equals(0);
     expect(number.strict.required(10)).equals(10);
     expect(number.with([10, 11]).strict.required(10)).equals(10);
     expect(
