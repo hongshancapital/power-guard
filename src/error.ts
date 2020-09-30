@@ -18,3 +18,15 @@ export default class PowerGuardError extends Error {
     this.details = details;
   }
 }
+
+export class PowerGuardKeyError extends Error {
+  key: string;
+  gut: PowerGuardError;
+
+  constructor(key: string, gut: PowerGuardError) {
+    super(`Guard "${key}" failed: ${gut.message}`);
+
+    this.key = key;
+    this.gut = gut;
+  }
+}

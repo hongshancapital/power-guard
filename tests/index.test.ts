@@ -1,5 +1,6 @@
-import guard, { number, string, enumGuard, boolean, array, PowerGuardError } from '../src';
+import guard, { number, string, enumGuard, boolean, array } from '../src';
 import { expect } from 'chai';
+import PowerGuardError, { PowerGuardKeyError } from '../src/error';
 
 enum Foo {
   key1 = 'key1',
@@ -50,7 +51,7 @@ describe('Power guard', () => {
         bla: 1,
         bnd: [{ foo: '123' }],
       }),
-    ).throws(PowerGuardError);
+    ).throws(PowerGuardKeyError);
 
     expect(() =>
       guardFunc({
@@ -60,7 +61,7 @@ describe('Power guard', () => {
         bla: 1,
         bnd: [{ foo: 123 }],
       }),
-    ).throws(PowerGuardError);
+    ).throws(PowerGuardKeyError);
 
     expect(() =>
       guardFunc(`{

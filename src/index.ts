@@ -1,6 +1,6 @@
 import { isObject } from './types';
 import { GuardFunction } from './global';
-import PowerGuardError from './error';
+import PowerGuardError, { PowerGuardKeyError } from './error';
 
 export type DataConfig = {
   [key: string]: GuardFunction<unknown>;
@@ -10,7 +10,7 @@ export type GuardedData<T extends DataConfig> = {
   [key in keyof T]: ReturnType<T[key]>;
 };
 
-export const guard = <T extends DataConfig>(config: T): GuardFunction<GuardedData<T>> => (
+const guard = <T extends DataConfig>(config: T): GuardFunction<GuardedData<T>> => (
   data: unknown,
 ) => {
   if (!isObject(data)) {
@@ -23,7 +23,14 @@ export const guard = <T extends DataConfig>(config: T): GuardFunction<GuardedDat
     // @ts-ignore
     const value = data[key];
 
-    guarded[key] = config[key](value) as ReturnType<T[typeof key]>;
+    try {
+      guarded[key] = config[key](value) as ReturnType<T[typeof key]>;
+    } catch (error) {
+      if (error instanceof PowerGuardError) {
+        throw new PowerGuardKeyError(String(key), error);
+      }
+      throw error;
+    }
   });
 
   return guarded;
@@ -35,7 +42,7 @@ export * from './global';
 
 export * from './types';
 
-export { default as PowerGuardError } from './error';
+export { default as PowerGuardError, PowerGuardKeyError } from './error';
 
 export { default as array } from './array';
 
