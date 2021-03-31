@@ -24,12 +24,14 @@ describe('Enum guard', () => {
 
   it('should return proper enum array when needed', () => {
     expect(guard.required.array([Foo.key2, Foo.key1])).deep.equals([Foo.key2, Foo.key1]);
+    expect(guard.required.arrayNotEmpty([Foo.key2, Foo.key1])).deep.equals([Foo.key2, Foo.key1]);
     expect(guard.optional.array(undefined)).deep.equals(undefined);
     expect(guard.optional.array(null)).deep.equals(null);
   });
 
   it('should throw error for input array when needed', () => {
     expect(() => guard.optional.array([Foo.key1, '2'])).throws(PowerGuardError);
+    expect(() => guard.required.arrayNotEmpty([])).throws(PowerGuardError);
     expect(() => guard.required.array(undefined)).throws(PowerGuardError);
     expect(() => guard.required.array(null)).throws(PowerGuardError);
   });

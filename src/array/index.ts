@@ -24,3 +24,18 @@ function guardArray<T>(
 }
 
 export default guardArray;
+
+// TO-DO: refactor
+export function guardArrayNotEmpty<T>(elemGuard: GuardFunction<T>): (x: unknown) => Array<T> {
+  const guard = guardArray(elemGuard);
+
+  return (x) => {
+    const guarded = guard(x);
+
+    if (guarded.length === 0) {
+      throw new PowerGuardError('array', x, false, 'Array should have at least one element');
+    }
+
+    return guarded;
+  };
+}

@@ -1,6 +1,6 @@
 import guard, { NumberRange } from './guard';
 import { isArray, isNumber } from '../types';
-import guardArray from '../array';
+import guardArray, { guardArrayNotEmpty } from '../array';
 import { GuardClass, GuardFunctionWithArray, OptionalGuardFunctionWithArray } from '../global';
 
 class NumberGuard implements GuardClass<number> {
@@ -14,6 +14,7 @@ class NumberGuard implements GuardClass<number> {
     };
 
     test.array = guardArray((x) => guard(x, range, allowString));
+    test.arrayNotEmpty = guardArrayNotEmpty((x) => guard(x, range, allowString));
 
     return test;
   }

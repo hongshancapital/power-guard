@@ -48,10 +48,12 @@ describe('Number guard', () => {
 
   it('should return proper number array when needed', () => {
     expect(number.required.array([10, '11', '12'])).deep.equals([10, 11, 12]);
+    expect(number.required.arrayNotEmpty([10, '11', '12'])).deep.equals([10, 11, 12]);
     expect(number.strict.optional.array([10, 11, 12])).deep.equals([10, 11, 12]);
     expect(number.optional.array(undefined)).deep.equals(undefined);
     expect(number.optional.array(null)).deep.equals(null);
     expect(number.gt(10).optional.array(undefined)).deep.equals(undefined);
+    expect(number.gt(10).required.array([])).deep.equals([]);
     expect(number.gt(10).required.array(['11', 12, 13])).deep.equals([11, 12, 13]);
     expect(number.gt(10).lte(11).required.array([11, '11'])).deep.equals([11, 11]);
     expect(number.lt(11).required.array([10, 9, 8])).deep.equals([10, 9, 8]);
@@ -66,6 +68,7 @@ describe('Number guard', () => {
     expect(() => number.strict.optional.array([10, 11, '12'])).throws(PowerGuardError);
     expect(() => number.optional.array(10)).throws(PowerGuardError);
     expect(() => number.gt(10).optional.array([10, 9])).throws(PowerGuardError);
+    expect(() => number.gt(10).required.arrayNotEmpty([])).throws(PowerGuardError);
     expect(() => number.gt(10).required.array(undefined)).throws(PowerGuardError);
     expect(() => number.gt(10).lte(11).required.array([11, '12'])).throws(PowerGuardError);
     expect(() => number.lt(11).required.array([10, 11, 8])).throws(PowerGuardError);

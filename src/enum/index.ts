@@ -1,5 +1,5 @@
 import guard from './guard';
-import guardArray from '../array';
+import guardArray, { guardArrayNotEmpty } from '../array';
 import { GuardClass, GuardFunctionWithArray, OptionalGuardFunctionWithArray } from '../global';
 
 type EnumType<T> = T[keyof T];
@@ -18,6 +18,7 @@ class EnumGuard<T> implements GuardClass<EnumType<T>> {
     };
 
     test.array = guardArray((x) => guard(this.enumObject, x));
+    test.arrayNotEmpty = guardArrayNotEmpty((x) => guard(this.enumObject, x));
 
     return test;
   }

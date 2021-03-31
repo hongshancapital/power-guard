@@ -8,6 +8,7 @@ export interface GuardFunction<T> {
 
 export interface GuardFunctionWithArray<T> extends GuardFunction<T> {
   array: GuardFunction<Array<T>>;
+  arrayNotEmpty: GuardFunction<Array<T>>;
 }
 
 export interface OptionalGuardFunctionWithArray<T> extends GuardFunction<Nullable<T>> {

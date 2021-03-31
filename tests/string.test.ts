@@ -28,6 +28,8 @@ describe('String guard', () => {
 
   it('should return proper string array when needed', () => {
     expect(string.required.array(['foo', 'bar', 'baz'])).deep.equals(['foo', 'bar', 'baz']);
+    expect(string.required.array([])).deep.equals([]);
+    expect(string.required.arrayNotEmpty(['foo', 'bar', 'baz'])).deep.equals(['foo', 'bar', 'baz']);
     expect(string.with(10).required.array(['str', '123', '1234567890'])).deep.equals([
       'str',
       '123',
@@ -44,11 +46,17 @@ describe('String guard', () => {
       'Image.PNG',
     ]);
     expect(string.notEmpty.array([' foo', 'bar ', 'baz'])).deep.equals([' foo', 'bar ', 'baz']);
+    expect(string.notEmpty.arrayNotEmpty([' foo', 'bar ', 'baz'])).deep.equals([
+      ' foo',
+      'bar ',
+      'baz',
+    ]);
   });
 
   it('should throw error for input array when needed', () => {
     expect(() => string.required.array(undefined)).throws(PowerGuardError);
     expect(() => string.required.array(null)).throws(PowerGuardError);
+    expect(() => string.required.arrayNotEmpty([])).throws(PowerGuardError);
     expect(() => string.with(10).required.array(['foo', 'areallylongstring'])).throws(
       PowerGuardError,
     );

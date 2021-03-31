@@ -1,5 +1,5 @@
 import guard from './guard';
-import guardArray from '../array';
+import guardArray, { guardArrayNotEmpty } from '../array';
 import { GuardClass, GuardFunctionWithArray, OptionalGuardFunctionWithArray } from '../global';
 
 export type BooleanMode = 'normal' | 'loose' | 'strict';
@@ -14,6 +14,7 @@ class BooleanGuard implements GuardClass<boolean> {
     };
 
     test.array = guardArray((x) => guard(x, mode));
+    test.arrayNotEmpty = guardArrayNotEmpty((x) => guard(x, mode));
 
     return test;
   }

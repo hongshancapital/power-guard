@@ -29,6 +29,7 @@ describe('Boolean guard', () => {
   it('should return proper boolean array when needed', () => {
     expect(boolean.required.array([true])).deep.equals([true]);
     expect(boolean.required.array(['false', true])).deep.equals([false, true]);
+    expect(boolean.required.arrayNotEmpty(['false', true])).deep.equals([false, true]);
     expect(boolean.strict.required.array([false])).deep.equals([false]);
     expect(boolean.strict.optional.array(undefined)).deep.equals(undefined);
     expect(boolean.strict.optional.array(null)).deep.equals(null);
@@ -44,6 +45,7 @@ describe('Boolean guard', () => {
 
   it('should throw error for input array when needed', () => {
     expect(() => boolean.required.array(['1'])).throws(PowerGuardError);
+    expect(() => boolean.required.arrayNotEmpty([])).throws(PowerGuardError);
     expect(() => boolean.required.array(undefined)).throws(PowerGuardError);
     expect(() => boolean.required.array(null)).throws(PowerGuardError);
     expect(() => boolean.strict.required.array([true, 'false'])).throws(PowerGuardError);

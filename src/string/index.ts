@@ -1,5 +1,5 @@
 import guard from './guard';
-import guardArray from '../array';
+import guardArray, { guardArrayNotEmpty } from '../array';
 import {
   GuardClass,
   GuardFunctionWithArray,
@@ -45,6 +45,7 @@ class StringGuard implements GuardClass<string> {
     };
 
     test.array = guardArray((x) => finalGuard(x));
+    test.arrayNotEmpty = guardArrayNotEmpty((x) => finalGuard(x));
 
     return test;
   }
@@ -57,6 +58,7 @@ class StringGuard implements GuardClass<string> {
     };
 
     test.array = guardArray((x) => escape(guard(x, maxLength)));
+    test.arrayNotEmpty = guardArrayNotEmpty((x) => escape(guard(x, maxLength)));
 
     return test;
   }
