@@ -33,10 +33,10 @@ describe('Power guard', () => {
       bnd: [{ foo: 123 }],
     });
 
-    expect(guardFunc({ foo: 10, bla: '0' })).deep.equals({
+    expect(guardFunc({ foo: 10, baz: null, bla: '0' })).deep.equals({
       foo: 10,
       bar: undefined,
-      baz: undefined,
+      baz: null,
       bla: false,
       bnd: undefined,
     });

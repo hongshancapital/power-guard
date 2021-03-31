@@ -1,14 +1,14 @@
 import { isEnum } from '../types';
-import { Optional } from '../global';
+import { Nullable } from '../global';
 import PowerGuardError from '../error';
 
 function guard<T>(enumObject: T, x: unknown): T[keyof T];
-function guard<T>(enumObject: T, x: unknown, optional: true): Optional<T[keyof T]>;
-function guard<T>(enumObject: T, x: unknown, optional = false): Optional<T[keyof T]> {
+function guard<T>(enumObject: T, x: unknown, optional: true): Nullable<T[keyof T]>;
+function guard<T>(enumObject: T, x: unknown, optional = false): Nullable<T[keyof T]> {
   if (isEnum(enumObject)(x)) {
     return x;
   }
-  if (optional && x === undefined) {
+  if (optional && (x === undefined || x === null)) {
     return x;
   }
   throw new PowerGuardError(String(enumObject), x, optional);

@@ -1,4 +1,4 @@
-export type Optional<T> = T | undefined;
+export type Nullable<T> = T | undefined | null;
 
 export type Guard<T> = (x: unknown) => x is T;
 
@@ -10,8 +10,8 @@ export interface GuardFunctionWithArray<T> extends GuardFunction<T> {
   array: GuardFunction<Array<T>>;
 }
 
-export interface OptionalGuardFunctionWithArray<T> extends GuardFunction<Optional<T>> {
-  array: GuardFunction<Optional<Array<T>>>;
+export interface OptionalGuardFunctionWithArray<T> extends GuardFunction<Nullable<T>> {
+  array: GuardFunction<Nullable<Array<T>>>;
 }
 
 export interface GuardClass<T> {

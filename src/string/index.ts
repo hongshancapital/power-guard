@@ -4,7 +4,7 @@ import {
   GuardClass,
   GuardFunctionWithArray,
   OptionalGuardFunctionWithArray,
-  Optional,
+  Nullable,
 } from '../global';
 import { PowerGuardError } from '..';
 
@@ -16,9 +16,9 @@ class StringGuard implements GuardClass<string> {
   private shouldEscape?: boolean;
 
   private escapeIfNeeded(x: string): string;
-  private escapeIfNeeded(x: Optional<string>): Optional<string>;
-  private escapeIfNeeded(x: Optional<string>): Optional<string> {
-    if (!this.shouldEscape || x === undefined) {
+  private escapeIfNeeded(x: Nullable<string>): Nullable<string>;
+  private escapeIfNeeded(x: Nullable<string>): Nullable<string> {
+    if (!this.shouldEscape || x === undefined || x === null) {
       return x;
     }
     // https://stackoverflow.com/questions/20486551/javascript-function-to-convert-utf8-string-between-fullwidth-and-halfwidth-forms

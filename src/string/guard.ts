@@ -1,14 +1,14 @@
 import { isString, isBoolean } from '../types';
-import { Optional } from '../global';
+import { Nullable } from '../global';
 import PowerGuardError from '../error';
 
 function guard(x: unknown, maxLength?: number): string;
-function guard(x: unknown, optional: true, maxLength?: number): Optional<string>;
+function guard(x: unknown, optional: true, maxLength?: number): Nullable<string>;
 function guard(
   x: unknown,
   optionalOrMaxlength?: boolean | number,
   maxLength?: number,
-): Optional<string> {
+): Nullable<string> {
   const optional = isBoolean(optionalOrMaxlength) && optionalOrMaxlength;
 
   if (isString(x)) {
@@ -26,7 +26,7 @@ function guard(
     return x;
   }
 
-  if (optional && x === undefined) {
+  if (optional && (x === undefined || x === null)) {
     return x;
   }
 

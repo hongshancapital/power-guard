@@ -6,6 +6,7 @@ describe('Number guard', () => {
     expect(number.required(10)).equals(10);
     expect(number.strict.optional(10)).equals(10);
     expect(number.optional(undefined)).equals(undefined);
+    expect(number.optional(null)).equals(null);
     expect(number.gt(10).optional(undefined)).equals(undefined);
     expect(number.gt(10).required('11')).equals(11);
     expect(number.gt(10).lte(11).required(11)).equals(11);
@@ -25,6 +26,7 @@ describe('Number guard', () => {
 
   it('should thow error when needed', () => {
     expect(() => number.required(undefined)).throws(PowerGuardError);
+    expect(() => number.required(null)).throws(PowerGuardError);
     expect(() => number.strict.optional('10')).throws(PowerGuardError);
     expect(() => number.optional('asd')).throws(PowerGuardError);
     expect(() => number.gt(10).optional('9')).throws(PowerGuardError);
@@ -48,6 +50,7 @@ describe('Number guard', () => {
     expect(number.required.array([10, '11', '12'])).deep.equals([10, 11, 12]);
     expect(number.strict.optional.array([10, 11, 12])).deep.equals([10, 11, 12]);
     expect(number.optional.array(undefined)).deep.equals(undefined);
+    expect(number.optional.array(null)).deep.equals(null);
     expect(number.gt(10).optional.array(undefined)).deep.equals(undefined);
     expect(number.gt(10).required.array(['11', 12, 13])).deep.equals([11, 12, 13]);
     expect(number.gt(10).lte(11).required.array([11, '11'])).deep.equals([11, 11]);
@@ -69,6 +72,7 @@ describe('Number guard', () => {
     expect(() => number.gte(10).lte(11).required.array([9, 11])).throws(PowerGuardError);
     expect(() => number.gte(10).lte(11).required.array(['9', '11'])).throws(PowerGuardError);
     expect(() => number.strict.required.array(undefined)).throws(PowerGuardError);
+    expect(() => number.strict.required.array(null)).throws(PowerGuardError);
     expect(() => number.with([10, 12]).strict.required.array([8, 11, 12])).throws(PowerGuardError);
   });
 });

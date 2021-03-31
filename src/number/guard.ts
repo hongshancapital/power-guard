@@ -1,5 +1,5 @@
 import { isNumber, isBoolean, isString } from '../types';
-import { Optional } from '../global';
+import { Nullable } from '../global';
 import PowerGuardError from '../error';
 
 type Range = {
@@ -17,13 +17,13 @@ function guard(
   optional: true,
   range?: NumberRange,
   allowString?: boolean,
-): Optional<number>;
+): Nullable<number>;
 function guard(
   x: unknown,
   optionalOrRange?: boolean | NumberRange,
   rangeOrAllowString?: NumberRange | boolean,
   allowString = false,
-): Optional<number> {
+): Nullable<number> {
   const optional = isBoolean(optionalOrRange) && optionalOrRange;
   const parsed = isNumber(x)
     ? x
@@ -64,7 +64,7 @@ function guard(
     }
     return parsed;
   }
-  if (optional && x === undefined) {
+  if (optional && (x === undefined || x === null)) {
     return x;
   }
   throw new PowerGuardError('number', x, optional);

@@ -8,6 +8,7 @@ describe('Boolean guard', () => {
     expect(boolean.required('false')).equals(false);
     expect(boolean.strict.required(false)).equals(false);
     expect(boolean.strict.optional(undefined)).equals(undefined);
+    expect(boolean.strict.optional(null)).equals(null);
     expect(boolean.loose.required('true')).equals(true);
     expect(boolean.loose.required(1)).equals(true);
     expect(boolean.loose.required('1')).equals(true);
@@ -19,6 +20,7 @@ describe('Boolean guard', () => {
   it('should throw error when needed', () => {
     expect(() => boolean.required('1')).throws(PowerGuardError);
     expect(() => boolean.required(undefined)).throws(PowerGuardError);
+    expect(() => boolean.required(null)).throws(PowerGuardError);
     expect(() => boolean.strict.required('false')).throws(PowerGuardError);
     expect(() => boolean.strict.optional(1)).throws(PowerGuardError);
     expect(() => boolean.loose.required('true1')).throws(PowerGuardError);
@@ -29,6 +31,7 @@ describe('Boolean guard', () => {
     expect(boolean.required.array(['false', true])).deep.equals([false, true]);
     expect(boolean.strict.required.array([false])).deep.equals([false]);
     expect(boolean.strict.optional.array(undefined)).deep.equals(undefined);
+    expect(boolean.strict.optional.array(null)).deep.equals(null);
     expect(boolean.loose.required.array(['true', 'false', 1, 0, '-1', false])).deep.equals([
       true,
       false,
@@ -42,6 +45,7 @@ describe('Boolean guard', () => {
   it('should throw error for input array when needed', () => {
     expect(() => boolean.required.array(['1'])).throws(PowerGuardError);
     expect(() => boolean.required.array(undefined)).throws(PowerGuardError);
+    expect(() => boolean.required.array(null)).throws(PowerGuardError);
     expect(() => boolean.strict.required.array([true, 'false'])).throws(PowerGuardError);
     expect(() => boolean.strict.optional.array([1])).throws(PowerGuardError);
     expect(() => boolean.loose.required.array(['true1'])).throws(PowerGuardError);
