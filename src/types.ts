@@ -13,7 +13,7 @@ export const isNull = (x: unknown): x is null => x === null;
 
 export const isObject = (x: unknown): x is object => !isNull(x) && typeof x === 'object';
 
-export const isEnum = <T>(enumObject: T) => (token: unknown): token is T[keyof T] =>
+export const isEnum = <T extends Record<string, unknown>>(enumObject: T) => (token: unknown): token is T[keyof T] =>
   Object.values(enumObject).includes(token as T[keyof T]);
 
 export const isArray = <T>(elemGuard: Guard<T>) => (x: unknown): x is Array<T> =>
