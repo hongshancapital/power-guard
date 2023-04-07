@@ -1,12 +1,12 @@
 {
-  "name": "power-guard",
+  "name": "@scdt-china/power-guard",
   "version": "2.0.0",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
     "lib"
   ],
-  "repository": "https://github.com/gao-sun/power-guard",
+  "repository": "git@github.com:scdt-china/power-guard.git",
   "author": "Gao Sun",
   "license": "MIT",
   "scripts": {
