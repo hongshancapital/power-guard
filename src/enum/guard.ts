@@ -2,9 +2,9 @@ import { isEnum } from '../types';
 import { Nullable } from '../global';
 import PowerGuardError from '../error';
 
-function guard<T>(enumObject: T, x: unknown): T[keyof T];
-function guard<T>(enumObject: T, x: unknown, optional: true): Nullable<T[keyof T]>;
-function guard<T>(enumObject: T, x: unknown, optional = false): Nullable<T[keyof T]> {
+function guard<T extends {}>(enumObject: T, x: unknown): T[keyof T];
+function guard<T extends {}>(enumObject: T, x: unknown, optional: true): Nullable<T[keyof T]>;
+function guard<T extends {}>(enumObject: T, x: unknown, optional = false): Nullable<T[keyof T]> {
   if (isEnum(enumObject)(x)) {
     return x;
   }

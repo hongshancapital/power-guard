@@ -10,7 +10,7 @@ export type GuardedData<T extends DataConfig> = {
   [key in keyof T]: ReturnType<T[key]>;
 };
 
-const guard = <T extends DataConfig>(config: T): GuardFunction<GuardedData<T>> => (
+export const guard = <T extends DataConfig>(config: T): GuardFunction<GuardedData<T>> => (
   data: unknown,
 ) => {
   if (!isObject(data)) {
@@ -35,8 +35,6 @@ const guard = <T extends DataConfig>(config: T): GuardFunction<GuardedData<T>> =
 
   return guarded;
 };
-
-export default guard;
 
 export * from './global';
 
