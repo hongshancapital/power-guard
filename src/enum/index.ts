@@ -4,8 +4,8 @@ import { GuardClass, GuardFunctionWithArray, OptionalGuardFunctionWithArray } fr
 
 type EnumType<T> = T[keyof T];
 
-class EnumGuard<T extends {}> implements GuardClass<EnumType<T>> {
-  static create<T extends {}>(enumObject: T) {
+class EnumGuard<T extends Record<string, unknown>> implements GuardClass<EnumType<T>> {
+  static create<T extends Record<string, unknown>>(enumObject: T) {
     return new EnumGuard(enumObject);
   }
 
