@@ -1,5 +1,5 @@
 {
-  "name": "@scdt-china/power-guard",
+  "name": "@hongshancapital/power-guard",
   "version": "3.0.3",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -9,7 +9,7 @@
   "author": "Gao Sun",
   "license": "MIT",
   "type": "module",
-  "repository": "git@github.com:scdt-china/power-guard.git",
+  "repository": "git@github.com:hongshancapital/power-guard.git",
   "scripts": {
     "build": "rm -rf lib/ && tsc",
     "lint": "eslint --ext .tsx --ext .ts src/ tests/",
