@@ -1,15 +1,15 @@
-import { GuardFunction, Optional } from '../global';
-import PowerGuardError from '../error';
+import { GuardFunction, Optional, OptionalArray } from '../global.js';
+import PowerGuardError from '../error.js';
 
 function guardArray<T>(elemGuard: GuardFunction<T>): (x: unknown) => Array<T>;
 function guardArray<T>(
   elemGuard: GuardFunction<T>,
   optional: true,
-): (x: unknown) => Optional<Array<T>>;
+): (x: unknown) => OptionalArray<T>;
 function guardArray<T>(
   elemGuard: GuardFunction<T>,
   optional = false,
-): (x: unknown) => Optional<Array<T>> {
+): (x: unknown) => OptionalArray<T> {
   return (x) => {
     if (optional && !x) {
       return undefined;

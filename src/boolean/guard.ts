@@ -1,7 +1,7 @@
-import { isBoolean, isString } from '../types';
-import { Optional } from '../global';
-import { BooleanMode } from '.';
-import PowerGuardError from '../error';
+import { isBoolean, isString } from '../types.js';
+import { Optional } from '../global.js';
+import { BooleanMode } from './index.js';
+import PowerGuardError from '../error.js';
 
 function guard(x: unknown, mode?: BooleanMode): boolean;
 function guard(x: unknown, optional: true, mode?: BooleanMode): Optional<boolean>;

@@ -1,6 +1,6 @@
-import guard from './guard';
-import guardArray from '../array';
-import { GuardClass, GuardFunctionWithArray, OptionalGuardFunctionWithArray } from '../global';
+import guard from './guard.js';
+import guardArray from '../array/index.js';
+import { GuardClass, GuardFunctionWithArray, OptionalGuardFunctionWithArray } from '../global.js';
 
 export type BooleanMode = 'normal' | 'loose' | 'strict';
 

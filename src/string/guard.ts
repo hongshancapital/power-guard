@@ -1,6 +1,6 @@
-import { isString, isBoolean } from '../types';
-import { Optional } from '../global';
-import PowerGuardError from '../error';
+import { isString, isBoolean } from '../types.js';
+import { Optional } from '../global.js';
+import PowerGuardError from '../error.js';
 
 function guard(x: unknown, maxLength?: number): string;
 function guard(x: unknown, optional: true, maxLength?: number): Optional<string>;

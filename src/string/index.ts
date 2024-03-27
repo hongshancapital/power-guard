@@ -1,12 +1,12 @@
-import guard from './guard';
-import guardArray from '../array';
+import guard from './guard.js';
+import guardArray from '../array/index.js';
 import {
   GuardClass,
   GuardFunctionWithArray,
   OptionalGuardFunctionWithArray,
   Optional,
-} from '../global';
-import { PowerGuardError } from '..';
+} from '../global.js';
+import PowerGuardError from '../error.js';
 
 const punctuation = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
 const unknownChar = '\uFFFD';

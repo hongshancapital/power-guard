@@ -1,6 +1,6 @@
-import { isNumber, isBoolean, isString } from '../types';
-import { Optional } from '../global';
-import PowerGuardError from '../error';
+import { isNumber, isBoolean, isString } from '../types.js';
+import { Optional } from '../global.js';
+import PowerGuardError from '../error.js';
 
 type Range = {
   lower: number;

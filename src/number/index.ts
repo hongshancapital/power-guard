@@ -1,7 +1,7 @@
-import guard, { NumberRange } from './guard';
-import { isArray, isNumber } from '../types';
-import guardArray from '../array';
-import { GuardClass, GuardFunctionWithArray, OptionalGuardFunctionWithArray } from '../global';
+import guard, { NumberRange } from './guard.js';
+import { isArray, isNumber } from '../types.js';
+import guardArray from '../array/index.js';
+import { GuardClass, GuardFunctionWithArray, OptionalGuardFunctionWithArray } from '../global.js';
 
 class NumberGuard implements GuardClass<number> {
   private range?: NumberRange;
