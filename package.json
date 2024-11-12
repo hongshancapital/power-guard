@@ -1,6 +1,6 @@
 {
   "name": "@hongshancapital/power-guard",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
