@@ -1,6 +1,6 @@
-import guard, { number, string, enumGuard, boolean, array } from '../src';
+import { guard, number, string, enumGuard, boolean, guardArray } from '../src/index.js';
 import { expect } from 'chai';
-import PowerGuardError, { PowerGuardKeyError } from '../src/error';
+import PowerGuardError, { PowerGuardKeyError } from '../src/error.js';
 
 enum Foo {
   key1 = 'key1',
@@ -12,7 +12,7 @@ const guardFunc = guard({
   bar: string.escaped.optional,
   baz: enumGuard(Foo).optional.array,
   bla: boolean.loose.optional,
-  bnd: array(guard({ foo: number.strict.required }), true),
+  bnd: guardArray(guard({ foo: number.strict.required }), true),
 });
 
 describe('Power guard', () => {

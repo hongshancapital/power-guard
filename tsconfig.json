@@ -1,6 +1,10 @@
 {
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifier": true
+  },
   "compilerOptions": {
-    "target": "es6",
+    "target": "es2020",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": false,
     "skipLibCheck": false,
@@ -8,7 +12,8 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node16",
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "declaration": true,

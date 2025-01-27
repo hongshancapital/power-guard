@@ -1,5 +1,5 @@
-import { boolean, PowerGuardError } from '../src';
-import guard from '../src/boolean/guard';
+import { boolean, PowerGuardError } from '../src/index.js';
+import guard from '../src/boolean/guard.js';
 import { expect } from 'chai';
 
 describe('Boolean guard', () => {

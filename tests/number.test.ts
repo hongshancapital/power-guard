@@ -1,4 +1,4 @@
-import { number, PowerGuardError } from '../src';
+import { number, PowerGuardError } from '../src/index.js';
 import { expect } from 'chai';
 
 describe('Number guard', () => {
