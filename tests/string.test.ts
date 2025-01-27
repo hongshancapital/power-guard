@@ -1,4 +1,4 @@
-import { string, PowerGuardError } from '../src';
+import { string, PowerGuardError } from '../src/index.js';
 import { expect } from 'chai';
 
 describe('String guard', () => {

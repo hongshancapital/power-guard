@@ -1,4 +1,4 @@
-import { enumGuard, PowerGuardError } from '../src';
+import { enumGuard, PowerGuardError } from '../src/index.js';
 import { expect } from 'chai';
 
 enum Foo {
