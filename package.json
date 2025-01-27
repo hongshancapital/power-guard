@@ -40,8 +40,7 @@
     "semver": "^7.6.3"
   },
   "resolutions": {
-    "braces": "3.0.3",
-    "semver": "5.7.2"
+    "braces": "3.0.3"
   },
   "dependencies": {},
   "volta": {
